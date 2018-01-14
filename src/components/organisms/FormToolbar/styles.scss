@@ -1,0 +1,49 @@
+.FormToolbar {
+  position: relative;
+  background-color: white;
+  width: 57px;
+  height: 228px;
+  box-shadow: 0 4px 3px rgba(0, 0, 0, 0.14);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  top: 0;
+
+  .Text {
+    width: 24px;
+    height: 24px;
+    background: url(./assets/text.png), #fff;
+    background-repeat: no-repeat;
+    background-size: cover;
+    cursor: pointer;
+  }
+
+  .Image {
+    width: 24px;
+    height: 24px;
+    background: url(./assets/picture.png), #fff;
+    background-repeat: no-repeat;
+    background-size: cover;
+    cursor: pointer;
+  }
+
+  .Section {
+    width: 24px;
+    height: 24px;
+    background: url(./assets/section.png), #fff;
+    background-repeat: no-repeat;
+    background-size: cover;
+    cursor: pointer;
+  }
+
+  .Add {
+    width: 24px;
+    height: 24px;
+    background: url(./assets/Add.png), #fff;
+    background-repeat: no-repeat;
+    background-size: cover;
+    cursor: pointer;
+  }
+}

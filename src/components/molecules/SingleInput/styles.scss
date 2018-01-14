@@ -1,0 +1,20 @@
+.SingleInput {
+  .Title {
+    background: #fff;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+
+    &:focus {
+      border-bottom: 3px solid #2d9cdb;
+      border-top: 0;
+      border-left: 0;
+      border-right: 0;
+    }
+  }
+
+  .Value {
+    color: blue;
+    border: 1px solid #d1d1d1;
+  }
+}
