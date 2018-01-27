@@ -30,7 +30,7 @@ class Dropdown extends Component<{}, State> {
     const visible: number = this.state.drop ? 1 : 0;
     const displayFlag: string = this.state.drop ? 'block' : 'none';
     return (
-      <div role="presentation" onKeyDown={() => {}} onClick={this.toggleDropdown} style={{ textDecoration: 'none' }}>
+      <div role="presentation" onKeyDown={() => {}} onClick={this.toggleDropdown} style={{ textDecoration: 'none', display: 'inline-block' }}>
         <div className={styles.Dropdown}>
           { ComponentType[this.state.selected] }
           { this.state.selected }

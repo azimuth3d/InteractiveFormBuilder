@@ -22,7 +22,7 @@ const initialState = {
   forms: [
     {
       title: 'คำถามสั้น',
-      formId: 1,
+      formId: 'first-form',
       type: 'singleInput',
     },
   ],
@@ -31,28 +31,28 @@ const initialState = {
 export default (state: State = initialState, action: Action = {}): State => {
   switch (action.type) {
     case SELECT_FORM_IN_ROW:
-      return _.assign(state, { activeRow: action.activeRow });
+      return _.assign(state, { activeRow: action.row });
     case SAVE_FORM:
-      return _.assign(state, { numForms: state.numForms + 1 });
+      return _.assign(state, { numForm: state.numForm + 1 });
     case CHANGE_BOARD_TITLE:
       return _.assign(state, { title: action.title });
     case ADD_NEW_FORM_BLOCK: {
       const newForm = state.forms;
       newForm.push({
         title: 'คำถามสั้น',
-        formId: state.numForm + 1,
+        formId: action.formId,
         type: 'singleInput',
       });
       return _.assign(state, {
-        numForm: action.formId + 1,
-        activeRow: state.formId,
+        numForm: state.numForm + 1,
+        activeRow: state.numForm + 1,
         forms: newForm,
       });
     }
     case REMOVE_FORM_BLOCK: {
       let newForms = state.forms;
       newForms = newForms.filter(form => form.formId !== action.removeId);
-      return _.assign(state, { forms: newForms });
+      return _.assign(state, { forms: newForms, numForm: state.numForm - 1 });
     }
     case CHANGE_FORM_TITLE: {
       const newState = state;

@@ -1,8 +1,7 @@
 {
   "name": "react-cool-starter",
   "version": "2.9.1",
-  "description":
-    "A starter boilerplate for an universal web application with the best development experience and best practices.",
+  "description": "A starter boilerplate for an universal web application with the best development experience and best practices.",
   "main": "index.js",
   "engines": {
     "node": ">=6.0",
@@ -71,8 +70,7 @@
       }
     },
     "build": {
-      "command":
-        "webpack --progress --hide-modules --config ./tools/webpack/config.babel.js",
+      "command": "webpack --progress --hide-modules --config ./tools/webpack/config.babel.js",
       "env": {
         "NODE_ENV": "production"
       }
@@ -117,17 +115,29 @@
       "stage-0",
       "flow"
     ],
-    "plugins": ["lodash"],
+    "plugins": [
+      "lodash"
+    ],
     "env": {
       "production": {
-        "plugins": ["transform-remove-console"]
+        "plugins": [
+          "transform-remove-console"
+        ]
       }
     }
   },
   "eslintConfig": {
     "parser": "babel-eslint",
-    "extends": ["plugin:lodash-fp/recommended", "airbnb"],
-    "plugins": ["react", "jsx-a11y", "import", "lodash-fp"],
+    "extends": [
+      "plugin:lodash-fp/recommended",
+      "airbnb"
+    ],
+    "plugins": [
+      "react",
+      "jsx-a11y",
+      "import",
+      "lodash-fp"
+    ],
     "env": {
       "browser": true,
       "node": true,
@@ -152,14 +162,23 @@
       "jsx-a11y/anchor-is-valid": [
         "error",
         {
-          "specialLink": ["to"]
+          "specialLink": [
+            "to"
+          ]
         }
       ],
-      "arrow-body-style": ["error", "as-needed"],
+      "no-bitwise": 0,
+      "arrow-body-style": [
+        "error",
+        "as-needed"
+      ],
       "react/jsx-filename-extension": [
         1,
         {
-          "extensions": [".js", ".jsx"]
+          "extensions": [
+            ".js",
+            ".jsx"
+          ]
         }
       ],
       "import/no-extraneous-dependencies": [
@@ -179,20 +198,37 @@
     }
   },
   "stylelint": {
+    "plugins": [
+      "stylelint-scss"
+    ],
     "extends": "stylelint-config-standard",
     "rules": {
+      "scss/at-extend-no-missing-placeholder": true,
+      "at-rule-no-unknown": null,
+      "scss/at-rule-no-unknown": true,
       "string-quotes": "single",
       "selector-pseudo-class-no-unknown": [
         true,
         {
-          "ignorePseudoClasses": ["global", "local"]
+          "ignorePseudoClasses": [
+            "global",
+            "local"
+          ]
         }
       ]
     }
   },
-  "browserslist": ["> 1%", "last 2 versions", "ie >= 11", "safari >= 7"],
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "ie >= 11",
+    "safari >= 7"
+  ],
   "jest": {
-    "setupFiles": ["raf/polyfill", "<rootDir>/tools/jest/setup.js"],
+    "setupFiles": [
+      "raf/polyfill",
+      "<rootDir>/tools/jest/setup.js"
+    ],
     "collectCoverageFrom": [
       "src/containers/**/*.js",
       "src/components/**/*.js",
@@ -200,8 +236,7 @@
     ],
     "moduleNameMapper": {
       ".*\\.(css|scss|sass)$": "<rootDir>/tools/jest/styleMock.js",
-      ".*\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$":
-        "<rootDir>/tools/jest/assetMock.js"
+      ".*\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/tools/jest/assetMock.js"
     }
   },
   "dependencies": {
@@ -209,6 +244,7 @@
     "babel-register": "^6.26.0",
     "chalk": "2.3.0",
     "compression": "1.7.1",
+    "crypto": "^1.0.1",
     "express": "4.16.2",
     "helmet": "3.9.0",
     "history": "^4.7.2",
@@ -282,6 +318,7 @@
     "style-loader": "0.19.1",
     "stylelint": "8.4.0",
     "stylelint-config-standard": "18.0.0",
+    "stylelint-scss": "^2.2.0",
     "stylelint-webpack-plugin": "^0.9.0",
     "url-loader": "0.6.2",
     "webpack": "3.10.0",

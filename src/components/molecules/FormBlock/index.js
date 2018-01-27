@@ -23,7 +23,7 @@ class FormBlock extends PureComponent<Prop> {
     this.changeActiveForm = this.changeActiveForm.bind(this);
   }
   changeActiveForm() {
-    this.props.selectActiveForm(this.props.formboard.forms[this.props.index].formId);
+    this.props.selectActiveForm(this.props.index + 1);
   }
   changeFormTitle(value: string) {
     // console.log(`value is ${value}  di is ${this.props.index}`);
@@ -39,7 +39,7 @@ class FormBlock extends PureComponent<Prop> {
     return (
       <div
         ref={formId}
-        className={formId === activeRow ? styles.active : styles.FormBlock}
+        className={index === activeRow - 1 ? styles.active : styles.FormBlock}
         onClick={this.changeActiveForm}
         onKeyDown={() => {}}
         role="presentation"

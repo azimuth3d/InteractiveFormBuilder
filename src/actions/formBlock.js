@@ -16,16 +16,16 @@ export const changeFormTitle = (formId: number, changeTitle: string): ThunkActio
   });
 };
 
-export const selectActiveForm = (formId: number): ThunkAction => (
+export const selectActiveForm = (numRow: number): ThunkAction => (
   dispatch: Dispatch,
 ) => {
   dispatch({
     type: SELECT_FORM_IN_ROW,
-    activeRow: formId,
+    row: numRow,
   });
 };
 
-export const addNewFormBlock = (Id: string): ThunkAction => (
+export const addNewFormBlock = (Id: string): ThunkAction => async (
   dispatch: Dispatch,
 ) => {
   dispatch({

@@ -34,7 +34,7 @@ class FormBoard extends PureComponent<Props> {
               />
             }
           </div>
-          {board.forms.map((form, i) => (
+          { board.forms.map((form, i) => (
             <FormBlock
               index={i}
               key={form.formId}
