@@ -4,15 +4,13 @@ import styles from './styles.scss';
 
 type Props = { title: string, changeFormTitle:(title: string) => void };
 
-// saveTitleValue: () => void };
-
-class SingleInput extends PureComponent<Props> {
+class MultipleChoices extends PureComponent<Props> {
   changeFormTitle = (event) => {
     this.props.changeFormTitle(event.target.value);
   }
   render() {
     return (
-      <div className={styles.SingleInput}>
+      <div className={styles.MultipleChoice}>
         <div style={{ padding: '10px 0' }}>
           <input
             type="text"
@@ -22,18 +20,9 @@ class SingleInput extends PureComponent<Props> {
             onChange={this.changeFormTitle}
           />
         </div>
-        <div>
-          <input
-            type="text"
-            className={styles.Value}
-            name="value"
-            placeholder="answer"
-            disabled
-          />
-        </div>
       </div>
     );
   }
 }
 
-export default SingleInput;
+export default MultipleChoices;

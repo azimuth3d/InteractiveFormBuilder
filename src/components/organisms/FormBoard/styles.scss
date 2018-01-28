@@ -1,12 +1,12 @@
 
 .FormBoard {
   margin: 50px auto;
-  width: 70%;
+  width: 80%;
 
   .container {
     width: 70%;
     background-color: white;
-    padding: 20px 0;
+    padding: 20px 0 0 0;
     display: flex;
     justify-content: space-around;
     flex-flow: row wrap;
@@ -16,7 +16,8 @@
   }
 
   .formTitle {
-    width: 60%;
+    width: 100%;
+    padding-left: 120px;
     border-bottom: 1px;
   }
 

@@ -5,6 +5,7 @@ import styles from './styles.scss';
 // import FormBlock from '../../molecules/FormBlock';
 import FormBlock from '../../../containers/BlockContainer';
 import FormToolbar from '../FormToolbar';
+import LanguageSwitch from '../../atoms/LanguageSwitch';
 import type { FormBoard as FormBoardType } from '../../../types';
 
 type Props = {
@@ -44,6 +45,7 @@ class FormBoard extends PureComponent<Props> {
         <div className={styles.toolbar}>
           <FormToolbar row={board.activeRow - 1} />
         </div>
+        <LanguageSwitch />
       </div>
     );
   }

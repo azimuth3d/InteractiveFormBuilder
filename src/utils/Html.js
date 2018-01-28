@@ -26,7 +26,7 @@ const Html = ({ store, htmlContent }: Props): Element<'html'> => {
         />
         <link rel="apple-touch-icon" href="apple-touch-icon.png" />
         <link rel="shortcut icon" href="/favicon.ico" />
-        <link href="https://fonts.googleapis.com/css?family=Mitr:300,400" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" />
         {head.title.toComponent()}
         {head.base.toComponent()}
         {head.meta.toComponent()}
@@ -61,7 +61,8 @@ const Html = ({ store, htmlContent }: Props): Element<'html'> => {
                 require('../components/organisms/FormToolbar/styles.scss')
                   ._style +
                 require('../components/atoms/Dropdown/styles.scss')._style +
-                require('../components/atoms/ControlBtn/styles.scss')._style,
+                require('../components/atoms/ControlBtn/styles.scss')._style +
+                require('../components/atoms/LanguageSwitch/styles.scss')._style,
             }}
           />
         ) : null}

@@ -16,14 +16,14 @@ import type { FormBoard, Action } from '../types';
 type State = FormBoard;
 
 const initialState = {
-  title: 'ฟอร์มไม่มีชื่อ',
+  title: 'Form Title',
   numForm: 1,
   activeRow: 1,
   forms: [
     {
-      title: 'คำถามสั้น',
+      title: 'Question name',
       formId: 'first-form',
-      type: 'singleInput',
+      type: 'MultipleChoices',
     },
   ],
 };
@@ -39,9 +39,9 @@ export default (state: State = initialState, action: Action = {}): State => {
     case ADD_NEW_FORM_BLOCK: {
       const newForm = state.forms;
       newForm.push({
-        title: 'คำถามสั้น',
+        title: 'Question title',
         formId: action.formId,
-        type: 'singleInput',
+        type: 'SingleInput',
       });
       return _.assign(state, {
         numForm: state.numForm + 1,

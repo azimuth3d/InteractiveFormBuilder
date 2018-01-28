@@ -1,0 +1,17 @@
+@import '../../../theme/variables';
+
+.LanguageSwitch {
+  width: 5%;
+  background: white;
+  border: 1px solid white;
+  padding: 10px;
+  border-radius: 3px;
+  color: $calm-blue;
+  cursor: pointer;
+  margin: 0 5px;
+
+  &:hover {
+    background: $calm-blue + 20%;
+    color: white;
+  }
+}
