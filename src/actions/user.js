@@ -14,14 +14,13 @@ export const fetchUser = (
 
   try {
     const res = await axios.get(`${URL}/${userId}`);
-
     dispatch({ type: 'USER_SUCCESS', userId, data: res.data });
   } catch (err) {
     dispatch({ type: 'USER_FAILURE', userId, err: err.message });
   }
 };
 
-// Using for preventing dobule fetching data
+// Using for preventing double fetching data
 /* istanbul ignore next */
 const shouldFetchUser = (state: ReduxState, userId: string): boolean => {
   // In development, we will allow action dispatching

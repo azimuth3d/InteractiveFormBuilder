@@ -1,23 +1,60 @@
-
 import type { Dispatch, ThunkAction } from '../types';
-import { CHANGE_FORM_TITLE,
+import {
+  CHANGE_FORM_TITLE,
+  CHANGE_FORM_TYPE,
+  CHANGE_CHOICE_TITLE,
   SELECT_FORM_IN_ROW,
   ADD_NEW_FORM_BLOCK,
+  ADD_NEW_CHOICE,
   REMOVE_FORM_BLOCK,
 } from './contants';
 
-export const changeFormTitle = (formId: number, changeTitle: string): ThunkAction => (
-  dispatch: Dispatch,
-) => {
+export const changeFormTitle = (
+  index: number,
+  changeTitle: string
+): ThunkAction => (dispatch: Dispatch) => {
   dispatch({
     type: CHANGE_FORM_TITLE,
     title: changeTitle,
-    id: formId,
+    formIndex: index,
   });
 };
 
+export const changeFormType = (index: number, type: string): ThunkAction => (
+  dispatch: Dispatch
+) => {
+  dispatch({
+    type: CHANGE_FORM_TYPE,
+    formType: type,
+    formIndex: index,
+  });
+};
+
+export const changeChoiceTitle = (
+  index: number,
+  choice: number,
+  title: string
+): ThunkAction => (dispatch: Dispatch) => {
+  dispatch({
+    type: CHANGE_CHOICE_TITLE,
+    formIndex: index,
+    choiceIndex: choice,
+    choiceTitle: title,
+  });
+};
+
+export const addNewChoice = (
+  index: number,
+): ThunkAction => (dispatch: Dispatch) => {
+  dispatch({
+    type: ADD_NEW_CHOICE,
+    formIndex: index,
+  });
+};
+
+
 export const selectActiveForm = (numRow: number): ThunkAction => (
-  dispatch: Dispatch,
+  dispatch: Dispatch
 ) => {
   dispatch({
     type: SELECT_FORM_IN_ROW,
@@ -26,7 +63,7 @@ export const selectActiveForm = (numRow: number): ThunkAction => (
 };
 
 export const addNewFormBlock = (Id: string): ThunkAction => async (
-  dispatch: Dispatch,
+  dispatch: Dispatch
 ) => {
   dispatch({
     type: ADD_NEW_FORM_BLOCK,
@@ -42,3 +79,4 @@ export const removeFormBlock = (Id: string): ThunkAction => (
     removeId: Id,
   });
 };
+

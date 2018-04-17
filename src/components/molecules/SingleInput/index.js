@@ -21,6 +21,7 @@ class SingleInput extends PureComponent<Props> {
             value={this.props.title}
             onChange={this.changeFormTitle}
           />
+          <hr className={styles.underline} />
         </div>
         <div>
           <input

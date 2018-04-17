@@ -1,7 +1,7 @@
 .ControlBtn {
-  display: block;
+  display: inline-block;
   width: 200px;
-  margin-left: 50%;
+  margin-left: 10%;
 
   .DeleteBtn {
     background-image: url('./assets/Trash.png');
@@ -10,6 +10,7 @@
     width: 27px;
     height: 28px;
     border: 0;
+    padding: 10px 0;
     cursor: pointer;
   }
 
@@ -20,6 +21,7 @@
     width: 27px;
     height: 28px;
     border: 0;
+    padding: 10px 0;
     cursor: pointer;
   }
 }

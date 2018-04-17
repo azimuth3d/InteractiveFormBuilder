@@ -8,6 +8,9 @@ import FormBlock from '../../components/molecules/FormBlock';
 type Props = {
   selectActiveForm: (formId: number) => void,
   changeFormTitle: (formId: number, title: string) => void,
+  changeFormType: (type: string) => void,
+  changeChoiceTitle: (formId: number, index: number, title: string) => void,
+  addNewChoice: (formIndex: number) => void,
 };
 
 const FormBlockContainer = props => <FormBlock {...props} />;
@@ -19,6 +22,12 @@ const connector: Connector<{}, Props> = connect(
       dispatch(formActions.selectActiveForm(formId)),
     changeFormTitle: (formId: number, title: string) =>
       dispatch(formActions.changeFormTitle(formId, title)),
+    changeFormType: (index: number, type: string) =>
+      dispatch(formActions.changeFormType(index, type)),
+    changeChoiceTitle: (formId: number, choiceIndex: number, title: string) =>
+      dispatch(formActions.changeChoiceTitle(formId, choiceIndex, title)),
+    addNewChoice: (formId: number) =>
+      dispatch(formActions.addNewChoice(formId)),
   })
 );
 

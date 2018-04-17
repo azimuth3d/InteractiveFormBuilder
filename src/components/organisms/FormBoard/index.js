@@ -5,7 +5,7 @@ import styles from './styles.scss';
 // import FormBlock from '../../molecules/FormBlock';
 import FormBlock from '../../../containers/BlockContainer';
 import FormToolbar from '../FormToolbar';
-import LanguageSwitch from '../../atoms/LanguageSwitch';
+
 import type { FormBoard as FormBoardType } from '../../../types';
 
 type Props = {
@@ -32,20 +32,17 @@ class FormBoard extends PureComponent<Props> {
                 type="text"
                 value={board ? board.title : null}
                 onChange={this.changeTitle}
+                className={styles.Title}
+                placeholder="form title"
               />
             }
+            <hr className={styles.underline} />
           </div>
-          { board.forms.map((form, i) => (
-            <FormBlock
-              index={i}
-              key={form.formId}
-            />
-          ))}
+          {board.forms.map((form, i) => <FormBlock index={i} key={form.formId} />)}
         </div>
         <div className={styles.toolbar}>
           <FormToolbar row={board.activeRow - 1} />
         </div>
-        <LanguageSwitch />
       </div>
     );
   }

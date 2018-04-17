@@ -5,8 +5,10 @@ class LanguageSwitch extends PureComponent {
   render() {
     return (
       <span>
-        <button type="button" className={styles.LanguageSwitch}> ไทย </button>
-        <button type="button" className={styles.LanguageSwitch}> EN </button>
+        <button type="button" className={styles.LanguageSwitch}>
+          ไทย
+        </button>
+        <button type="button">EN</button>
       </span>
     );
   }

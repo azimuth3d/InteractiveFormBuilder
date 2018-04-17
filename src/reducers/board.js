@@ -7,8 +7,11 @@ import {
   SAVE_FORM,
   CHANGE_BOARD_TITLE,
   CHANGE_FORM_TITLE,
+  CHANGE_FORM_TYPE,
   ADD_NEW_FORM_BLOCK,
   REMOVE_FORM_BLOCK,
+  CHANGE_CHOICE_TITLE,
+  ADD_NEW_CHOICE,
 } from '../actions/contants';
 
 import type { FormBoard, Action } from '../types';
@@ -21,9 +24,10 @@ const initialState = {
   activeRow: 1,
   forms: [
     {
-      title: 'Question name',
+      title: '',
       formId: 'first-form',
       type: 'MultipleChoices',
+      radiosTitle: [''],
     },
   ],
 };
@@ -56,7 +60,26 @@ export default (state: State = initialState, action: Action = {}): State => {
     }
     case CHANGE_FORM_TITLE: {
       const newState = state;
-      newState.forms[action.id].title = action.title;
+      newState.forms[action.formIndex].title = action.title;
+      return newState;
+    }
+    case CHANGE_FORM_TYPE: {
+      const newState = state;
+      newState.forms[action.formIndex].type = action.formType;
+      if (action.formType === 'MultipleChoices') {
+        newState.forms[action.formIndex].radiosTitle = [''];
+      }
+      return newState;
+    }
+    case CHANGE_CHOICE_TITLE: {
+      const newState = state;
+      newState.forms[action.formIndex].radiosTitle[action.choiceIndex] =
+        action.choiceTitle;
+      return newState;
+    }
+    case ADD_NEW_CHOICE: {
+      const newState = state;
+      newState.forms[action.formIndex].radiosTitle.push('');
       return newState;
     }
     default:
