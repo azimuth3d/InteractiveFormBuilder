@@ -81,7 +81,7 @@
         "NODE_ENV": "production",
         "SUPRESS_BROWSER_LAUNCH": true,
         "DOCKER": true,
-        "PORT": 80
+        "PORT": 8080
       }
     },
     "build": {

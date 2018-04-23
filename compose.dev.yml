@@ -1,0 +1,28 @@
+version: '3'
+services:
+     webapp:
+        image: khomkrit/interactive-form
+        volumes:
+          - ./:/usr/local/app:Z
+          - /usr/local/app/node_modules/
+        links:
+          - api  
+        ports:
+          - "8080:8080"  
+     api:
+        build: ./backend 
+        image: khomkrit/form-api
+        depends_on:
+          - db
+        volumes:
+          - ./backend:/usr/local/app:Z
+          - /usr/local/app/node_modules/
+        ports:
+          - "5000:5000"
+     db:
+      image: khomkrit/form-db
+      volumes:
+          - ./backend/mongodb/data/:/data
+      ports:
+          - "27017:27017"
+             

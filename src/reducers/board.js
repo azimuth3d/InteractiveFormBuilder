@@ -27,7 +27,18 @@ const initialState = {
       title: '',
       formId: 'first-form',
       type: 'MultipleChoices',
-      radiosTitle: [''],
+      radiosTitle: ['1005400-2000', '50-6893'],
+    },
+    {
+      title: '',
+      formId: 'second form',
+      type: 'Checkboxes',
+      radiosTitle: ['35000-15000', 'test2'],
+    },
+    {
+      title: '',
+      formId: 'third form',
+      type: 'SingleInput',
     },
   ],
 };

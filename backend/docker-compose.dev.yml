@@ -1,0 +1,24 @@
+version: '3'
+services: 
+    db:
+     image: khomkrit/form-db
+     volumes:
+       - ./mongodb/data:/data:Z
+     ports:
+      - "27017"
+    api:
+      build: .
+      image: khomkrit/form-api
+      volumes:
+        - ./:/usr/local/app:Z
+        - /usr/local/app/node_modules
+      ports:
+        - "5000:5000"
+      depends_on: 
+        - db
+      links:
+        - db 
+   
+    
+
+             

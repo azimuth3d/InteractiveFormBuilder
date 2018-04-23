@@ -10,3 +10,6 @@ export const ADD_NEW_CHOICE = 'ADD_NEW_CHOICE';
 
 export const ADD_NEW_FORM_BLOCK = 'ADD_NEW_FORM_BLOCK';
 export const REMOVE_FORM_BLOCK = ' DELETE_FORM_BLOCK';
+
+export const LOAD_BOARD = '[FromBoard] LOAD_BOARD';
+export const SAVE_BOARD = '[FormBoard] SAVE BOARD';
