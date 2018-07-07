@@ -5,12 +5,14 @@ import styles from './styles.scss';
 // import FormBlock from '../../molecules/FormBlock';
 import FormBlock from '../../../containers/BlockContainer';
 import FormToolbar from '../FormToolbar';
+import SaveButton from '../../atoms/SaveBtn';
 
 import type { FormBoard as FormBoardType } from '../../../types';
 
 type Props = {
   board: FormBoardType,
   changeBoardTitle: (title: string) => void,
+  saveBoard: (board: FormBoardType) => void,
 };
 
 class FormBoard extends PureComponent<Props> {
@@ -20,6 +22,9 @@ class FormBoard extends PureComponent<Props> {
   }
   changeTitle(event: any) {
     this.props.changeBoardTitle(event.target.value);
+  }
+  save = () => {
+    this.props.saveBoard(this.props.board);
   }
   render() {
     const { board } = this.props;
@@ -36,9 +41,12 @@ class FormBoard extends PureComponent<Props> {
                 placeholder="form title"
               />
             }
+            <SaveButton saveBoard={this.save} />
             <hr className={styles.underline} />
           </div>
-          {board.forms.map((form, i) => <FormBlock index={i} key={form.formId} />)}
+          {board.forms.map((form, i) => (
+            <FormBlock index={i} key={form.formId} />
+          ))}
         </div>
         <div className={styles.toolbar}>
           <FormToolbar row={board.activeRow - 1} />

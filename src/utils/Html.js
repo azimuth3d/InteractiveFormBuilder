@@ -36,7 +36,7 @@ const Html = ({ store, htmlContent }: Props): Element<'html'> => {
         {head.link.toComponent()}
 
         {/* Styles will be presented in production with webpack extract text plugin */}
-        {_.keys(assets.styles).map((style) => (
+        {_.keys(assets.styles).map(style => (
           <link
             key={_.uniqueId()}
             href={assets.styles[style]}
@@ -91,7 +91,7 @@ const Html = ({ store, htmlContent }: Props): Element<'html'> => {
         />
         {_.keys(assets.javascript)
           .reverse() // Reverse the order of scripts for accessing vendor.js first
-          .map((script) => (
+          .map(script => (
             <script key={_.uniqueId()} src={assets.javascript[script]} />
           ))}
         {head.script.toComponent()}

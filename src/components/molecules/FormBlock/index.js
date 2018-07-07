@@ -52,6 +52,11 @@ class FormBlock extends Component<Prop> {
     this.changeActiveForm = this.changeActiveForm.bind(this);
     this.changeFormType = this.changeFormType.bind(this);
   }
+  componentWillReceiveProps(nextProps) {
+    const { formboard, index } = nextProps;
+    console.log(nextProps);
+    this.setState({ title: formboard.forms[index].title });
+  }
   changeActiveForm() {
     this.props.selectActiveForm(this.props.index + 1);
   }
@@ -113,9 +118,7 @@ class FormBlock extends Component<Prop> {
         );
         break;
       case 'DatePicker':
-        renderform = (
-          <DatePicker />
-        );
+        renderform = <DatePicker />;
         break;
       default:
         renderform = null;
@@ -132,7 +135,7 @@ class FormBlock extends Component<Prop> {
         tabIndex={index}
       >
         {renderform}
-        <Dropdown changeFormType={this.changeFormType} />
+        <Dropdown changeFormType={this.changeFormType} initialSelected={type} />
         <ControlBtn formId={formId} />
       </div>
     );

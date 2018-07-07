@@ -1,14 +1,21 @@
-import bodyParser from 'body-parser';
+import * as bodyParser from 'body-parser';
 import * as express from 'express';
-import formModel from './model';
+import FormModel from './model';
 import * as mongoose from 'mongoose';
+import * as cors from 'cors';
 
 // setup server
 const server = express();
+server.use(cors());
+server.use(bodyParser.urlencoded({ extended: false }));
+
+// parse application/json
+server.use(bodyParser.json());
 
 mongoose.connect('mongodb://db:27017/');
 
 const db = mongoose.connection;
+const collection = db.collection('Forms');
 
 db.on('error', () => {
   console.log('---Failed to connect to mongoose');
@@ -18,29 +25,29 @@ db.once('open', () => {
   console.log('+++ Connected to mongoose');
 });
 
-server.use('/forms', async (req, res) => {
-  let form = new formModel();
-  let formData = await formModel.find();
+server.use('/board', async (req, res) => {
+  let form = new FormModel();
+  let formData = await FormModel.find();
   res.send(formData);
 });
 
-server.use('/save', (req, res) => {
-  let newForm = {
+server.use('/save', async (req, res) => {
+  /* let newForm = {
     title: 'Form Title',
-    numForm: 1,
+    numForm: 2,
     activeRow: 1,
     forms: [
       {
-        title: '',
+        title: 'ช่วงเงินเดือน',
         formId: 'first-form',
         type: 'MultipleChoices',
-        radiosTitle: ['1005400-2000', '50-6893'],
+        radiosTitle: ['1000-2000', '50-6893'],
       },
       {
         title: '',
         formId: 'second form',
         type: 'Checkboxes',
-        radiosTitle: ['35000-15000', 'test2'],
+        radiosTitle: ['test loading', 'test2'],
       },
       {
         title: '',
@@ -49,8 +56,66 @@ server.use('/save', (req, res) => {
       },
     ],
   };
+  */
+  const newForm = req.body.data;
+  const Id = req.body.formId;
+  console.log(` New form ${JSON.stringify(newForm)}`);
+  // const instance = new collection(newForm);
+  /*
+  try {
+    const result = await instance.save();
+    console.log(result.id);  // this will be the new created ObjectId
+    res.send(`Successful to insert new form id ${result.id}`);
+  } catch(err => {
+    res.send(err);
+  });
+  */
+  FormModel.findOneAndUpdate(
+    { uid: Id }, // find a document with that filter
+    newForm, // document to insert when nothing was found
+    { upsert: true, new: true, runValidators: true }, // options
+    function(err, doc) {
+      // callback
+      if (err) {
+        // handle error
+        console.log(err);
+      } else {
+        // handle document
+        console.log(`update document ${doc} `);
+      }
+    }
+  );
+});
 
-  let form = new formModel(newForm);
+server.use('/delete', (req, res) => {
+  /* let newForm = {
+    title: 'Form Title',
+    numForm: 2,
+    activeRow: 1,
+    forms: [
+      {
+        title: 'ช่วงเงินเดือน',
+        formId: 'first-form',
+        type: 'MultipleChoices',
+        radiosTitle: ['1000-2000', '50-6893'],
+      },
+      {
+        title: '',
+        formId: 'second form',
+        type: 'Checkboxes',
+        radiosTitle: ['test loading', 'test2'],
+      },
+      {
+        title: '',
+        formId: 'third form',
+        type: 'SingleInput',
+      },
+    ],
+  };
+  */
+  const newForm = req.body.data;
+  console.log(` New form ${JSON.stringify(newForm)}`);
+  let form = new FormModel(newForm);
   form.save();
   res.send('save data to database');
 });

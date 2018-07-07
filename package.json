@@ -1,5 +1,5 @@
 {
-  "name": "react-cool-starter",
+  "name": "interactive-form-builder",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -40,6 +40,7 @@
     "start:production": "yarn build && yarn start:prod",
     "start:prod": "better-npm-run start:prod",
     "start:production:docker": "yarn build && yarn start:prod:docker",
+    "start:development:docker": "yarn build && better-npm-run start:dev:docker",
     "start:prod:docker": "better-npm-run start:prod:docker",
     "build": "yarn clean:build && better-npm-run build",
     "lint": "yarn lint:js && yarn lint:style",
@@ -84,8 +85,19 @@
         "PORT": 8080
       }
     },
+    "start:dev:docker": {
+      "command": "nodemon ./index.js",
+      "env": {
+        "NODE_PATH": "./src",
+        "NODE_HOST": "0.0.0.0",
+        "NODE_ENV": "development",
+        "DOCKER": true,
+        "PORT": 3000
+      }
+    },
     "build": {
-      "command": "webpack --progress --hide-modules --config ./tools/webpack/config.babel.js",
+      "command":
+        "webpack --progress --hide-modules --config ./tools/webpack/config.babel.js",
       "env": {
         "NODE_ENV": "production"
       }
@@ -130,29 +142,17 @@
       "stage-0",
       "flow"
     ],
-    "plugins": [
-      "lodash"
-    ],
+    "plugins": ["lodash"],
     "env": {
       "production": {
-        "plugins": [
-          "transform-remove-console"
-        ]
+        "plugins": ["transform-remove-console"]
       }
     }
   },
   "eslintConfig": {
     "parser": "babel-eslint",
-    "extends": [
-      "plugin:lodash-fp/recommended",
-      "airbnb"
-    ],
-    "plugins": [
-      "react",
-      "jsx-a11y",
-      "import",
-      "lodash-fp"
-    ],
+    "extends": ["plugin:lodash-fp/recommended", "airbnb"],
+    "plugins": ["react", "jsx-a11y", "import", "lodash-fp"],
     "env": {
       "browser": true,
       "node": true,
@@ -180,23 +180,15 @@
       "jsx-a11y/anchor-is-valid": [
         "error",
         {
-          "specialLink": [
-            "to"
-          ]
+          "specialLink": ["to"]
         }
       ],
       "no-bitwise": 0,
-      "arrow-body-style": [
-        "error",
-        "as-needed"
-      ],
+      "arrow-body-style": ["error", "as-needed"],
       "react/jsx-filename-extension": [
         1,
         {
-          "extensions": [
-            ".js",
-            ".jsx"
-          ]
+          "extensions": [".js", ".jsx"]
         }
       ],
       "import/no-extraneous-dependencies": [
@@ -216,9 +208,7 @@
     }
   },
   "stylelint": {
-    "plugins": [
-      "stylelint-scss"
-    ],
+    "plugins": ["stylelint-scss"],
     "extends": "stylelint-config-standard",
     "rules": {
       "scss/at-extend-no-missing-placeholder": true,
@@ -228,25 +218,14 @@
       "selector-pseudo-class-no-unknown": [
         true,
         {
-          "ignorePseudoClasses": [
-            "global",
-            "local"
-          ]
+          "ignorePseudoClasses": ["global", "local"]
         }
       ]
     }
   },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "ie >= 11",
-    "safari >= 7"
-  ],
+  "browserslist": ["> 1%", "last 2 versions", "ie >= 11", "safari >= 7"],
   "jest": {
-    "setupFiles": [
-      "raf/polyfill",
-      "<rootDir>/tools/jest/setup.js"
-    ],
+    "setupFiles": ["raf/polyfill", "<rootDir>/tools/jest/setup.js"],
     "collectCoverageFrom": [
       "src/containers/**/*.js",
       "src/components/**/*.js",
@@ -254,11 +233,12 @@
     ],
     "moduleNameMapper": {
       ".*\\.(css|scss|sass)$": "<rootDir>/tools/jest/styleMock.js",
-      ".*\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/tools/jest/assetMock.js"
+      ".*\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$":
+        "<rootDir>/tools/jest/assetMock.js"
     }
   },
   "dependencies": {
-    "axios": "0.17.1",
+    "axios": "^0.17.1",
     "babel-register": "^6.26.0",
     "chalk": "2.3.0",
     "compression": "1.7.1",

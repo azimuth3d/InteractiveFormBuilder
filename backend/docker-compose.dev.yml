@@ -1,6 +1,7 @@
 version: '3'
 services: 
     db:
+     build: .
      image: khomkrit/form-db
      volumes:
        - ./mongodb/data:/data:Z
@@ -16,8 +17,8 @@ services:
         - "5000:5000"
       depends_on: 
         - db
-      links:
-        - db 
+     # links:
+     #  - db 
    
     
 

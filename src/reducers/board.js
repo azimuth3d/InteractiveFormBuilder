@@ -12,6 +12,8 @@ import {
   REMOVE_FORM_BLOCK,
   CHANGE_CHOICE_TITLE,
   ADD_NEW_CHOICE,
+  LOAD_BOARD,
+  SAVE_BOARD,
 } from '../actions/contants';
 
 import type { FormBoard, Action } from '../types';
@@ -27,7 +29,7 @@ const initialState = {
       title: '',
       formId: 'first-form',
       type: 'MultipleChoices',
-      radiosTitle: ['1005400-2000', '50-6893'],
+      radiosTitle: ['5400-2000', '50-6893'],
     },
     {
       title: '',
@@ -92,6 +94,18 @@ export default (state: State = initialState, action: Action = {}): State => {
       const newState = state;
       newState.forms[action.formIndex].radiosTitle.push('');
       return newState;
+    }
+    case LOAD_BOARD: {
+      let initState = {};
+      if (action.data) {
+        initState = action.data;
+      } else {
+        initState = state;
+      }
+      return initState;
+    }
+    case SAVE_BOARD: {
+      return state;
     }
     default:
       return state;

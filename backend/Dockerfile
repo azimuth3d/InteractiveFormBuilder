@@ -8,3 +8,4 @@ RUN npm install
 
 ADD . /usr/local/app
 CMD ["npm","run","dev"]
+EXPOSE 5000

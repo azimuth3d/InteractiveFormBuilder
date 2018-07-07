@@ -8,49 +8,113 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const bodyParser = require("body-parser");
 const express = require("express");
 const model_1 = require("./model");
 const mongoose = require("mongoose");
+const cors = require("cors");
 // setup server
 const server = express();
+server.use(cors());
+server.use(bodyParser.urlencoded({ extended: false }));
+// parse application/json
+server.use(bodyParser.json());
 mongoose.connect('mongodb://db:27017/');
 const db = mongoose.connection;
+const collection = db.collection('Forms');
 db.on('error', () => {
     console.log('---Failed to connect to mongoose');
 });
 db.once('open', () => {
     console.log('+++ Connected to mongoose');
 });
-server.use('/forms', (req, res) => __awaiter(this, void 0, void 0, function* () {
+server.use('/board', (req, res) => __awaiter(this, void 0, void 0, function* () {
     let form = new model_1.default();
     let formData = yield model_1.default.find();
     res.send(formData);
 }));
-server.use('/save', (req, res) => {
-    let newForm = {
-        title: 'Form Title',
-        numForm: 1,
-        activeRow: 1,
-        forms: [
-            {
-                title: '',
-                formId: 'first-form',
-                type: 'MultipleChoices',
-                radiosTitle: ['1005400-2000', '50-6893'],
-            },
-            {
-                title: '',
-                formId: 'second form',
-                type: 'Checkboxes',
-                radiosTitle: ['35000-15000', 'test2'],
-            },
-            {
-                title: '',
-                formId: 'third form',
-                type: 'SingleInput',
-            },
-        ],
+server.use('/save', (req, res) => __awaiter(this, void 0, void 0, function* () {
+    /* let newForm = {
+      title: 'Form Title',
+      numForm: 2,
+      activeRow: 1,
+      forms: [
+        {
+          title: 'ช่วงเงินเดือน',
+          formId: 'first-form',
+          type: 'MultipleChoices',
+          radiosTitle: ['1000-2000', '50-6893'],
+        },
+        {
+          title: '',
+          formId: 'second form',
+          type: 'Checkboxes',
+          radiosTitle: ['test loading', 'test2'],
+        },
+        {
+          title: '',
+          formId: 'third form',
+          type: 'SingleInput',
+        },
+      ],
     };
+    */
+    const newForm = req.body.data;
+    const Id = req.body.formId;
+    console.log(` New form ${JSON.stringify(newForm)}`);
+    // const instance = new collection(newForm);
+    /*
+    try {
+      const result = await instance.save();
+      console.log(result.id);  // this will be the new created ObjectId
+      res.send(`Successful to insert new form id ${result.id}`);
+    } catch(err => {
+      res.send(err);
+    });
+    */
+    model_1.default.findOneAndUpdate({ uid: Id }, // find a document with that filter
+    newForm, // document to insert when nothing was found
+    { upsert: true, new: true, runValidators: true }, // options
+    function (err, doc) {
+        // callback
+        if (err) {
+            // handle error
+            console.log(err);
+        }
+        else {
+            // handle document
+            console.log(`update document ${doc} `);
+        }
+    });
+}));
+server.use('/delete', (req, res) => {
+    /* let newForm = {
+      title: 'Form Title',
+      numForm: 2,
+      activeRow: 1,
+      forms: [
+        {
+          title: 'ช่วงเงินเดือน',
+          formId: 'first-form',
+          type: 'MultipleChoices',
+          radiosTitle: ['1000-2000', '50-6893'],
+        },
+        {
+          title: '',
+          formId: 'second form',
+          type: 'Checkboxes',
+          radiosTitle: ['test loading', 'test2'],
+        },
+        {
+          title: '',
+          formId: 'third form',
+          type: 'SingleInput',
+        },
+      ],
+    };
+    */
+    const newForm = req.body.data;
+    console.log(` New form ${JSON.stringify(newForm)}`);
     let form = new model_1.default(newForm);
     form.save();
     res.send('save data to database');

@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
 import styles from './styles.scss';
 
-type State = { drop: boolean, selected: string };
-type Props = { changeFormType: (type: string) => void };
+type State = {
+  drop: boolean,
+  selected: string,
+};
+type Props = {
+  changeFormType: (type: string) => void,
+  initialSelected: string,
+};
 
 const ComponentType = {
   ShortQuestion: <span className={styles.textbox} />,
@@ -12,7 +18,23 @@ const ComponentType = {
 };
 
 class Dropdown extends Component<Props, State> {
-  state = { drop: false, selected: 'ShortQuestion' };
+  /* static getDeriveFromState(nextProps, prevState) {
+    if (nextProps.initialSelected !== prevState.selected) {
+      return { selected: nextProps.initialSelected };
+    }
+    return null;
+  }
+  */
+
+  state = {
+    drop: false,
+    selected: 'ShortQuestion',
+  };
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({ selected: nextProps.initialSelected });
+  }
+
   changeSelect = (event) => {
     // To access your button instance use `event.currentTarget`
     event.preventDefault();
@@ -25,7 +47,9 @@ class Dropdown extends Component<Props, State> {
 
   toggleDropdown = (e) => {
     e.preventDefault();
-    this.setState({ drop: !this.state.drop });
+    this.setState({
+      drop: !this.state.drop,
+    });
   };
 
   render() {
@@ -39,8 +63,7 @@ class Dropdown extends Component<Props, State> {
         style={{ textDecoration: 'none', display: 'inline-block' }}
       >
         <div className={styles.Dropdown}>
-          {ComponentType[this.state.selected]}
-          {this.state.selected}
+          {ComponentType[this.state.selected]} {this.state.selected}
           <ul
             className={styles.choice}
             style={{ opacity: visible, display: displayFlag }}
@@ -53,8 +76,8 @@ class Dropdown extends Component<Props, State> {
                 data-id="ShortQuestion"
                 onClick={this.changeSelect}
               >
-                <span className={styles.textbox} data-id="ShortQuestion" />{' '}
-                short question
+                <span className={styles.textbox} data-id="ShortQuestion" />short
+                question
               </div>
             </li>
             <li>
@@ -65,8 +88,8 @@ class Dropdown extends Component<Props, State> {
                 data-id="MultipleChoices"
                 onClick={this.changeSelect}
               >
-                <span className={styles.radio} data-id="MultipleChoices" />{' '}
-                multiple choices
+                <span className={styles.radio} data-id="MultipleChoices" />multiple
+                choices
               </div>
             </li>
             <li>
@@ -77,7 +100,7 @@ class Dropdown extends Component<Props, State> {
                 data-id="Checkboxes"
                 onClick={this.changeSelect}
               >
-                <span className={styles.checkbox} data-id="Checkboxes" />{' '}
+                <span className={styles.checkbox} data-id="Checkboxes" />
                 checkbox
               </div>
             </li>

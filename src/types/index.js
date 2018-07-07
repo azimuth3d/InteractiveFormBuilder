@@ -4,7 +4,6 @@
 import type { Store as ReduxStore } from 'redux';
 import * as C from '../actions/contants';
 import type { Reducers } from '../reducers';
-
 // Reducers
 export type Home = {
   +readyStatus: string,
@@ -24,14 +23,13 @@ export type FormBlock = {
   formId: string,
   title: string,
   type: string,
-}
+};
 
 export type FormBoard = {
   +title: string,
   +numForm: number,
   +activeRow: number,
   forms: Array<Object>,
-  test: Array<string>,
 };
 
 // State
@@ -49,10 +47,12 @@ export type Action =
   | { type: C.SELECT_FORM_IN_ROW, row: number }
   | { type: C.CHANGE_BOARD_TITLE, title: string }
   | { type: C.SAVE_FORM }
-  | { type: C.ADD_NEW_FORM_BLOCK, formId: string};
+  | { type: C.ADD_NEW_FORM_BLOCK, formId: string }
+  | { type: C.LOAD_BOARD, Id: string, data: FormBoard }
+  | { type: C.SAVE_BOARD, Id: string, data: FormBoard };
 
 export type Dispatch = (
-  action: Action | ThunkAction | PromiseAction | Array<Action>,
+  action: Action | ThunkAction | PromiseAction | Array<Action>
 ) => any;
 export type GetState = () => ReduxState;
 export type ThunkAction = (dispatch: Dispatch, getState: GetState) => any;
