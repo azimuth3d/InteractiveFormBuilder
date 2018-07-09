@@ -17,7 +17,7 @@ export default class SaveButton extends PureComponent<Props> {
           name="saveForm"
           onClick={this.props.saveBoard}
         >
-          Save Form
+          Save 
         </button>
       </div>
     );
