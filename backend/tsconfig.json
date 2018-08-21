@@ -7,12 +7,7 @@
     "noImplicitAny": false,
     "strictNullChecks": false
   },
-  "include": [
-    "src/**/*.ts",
-    "spec/**/*.ts"
-  ],
+  "include": ["src/**/*.ts", "__tests__/**/*.ts"],
   "lib": ["es6", "es2015.promise"],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }

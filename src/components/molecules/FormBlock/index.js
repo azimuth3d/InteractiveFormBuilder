@@ -5,7 +5,7 @@ import type { FormBoard as FormBoardType } from '../../../types';
 import styles from './styles.scss';
 import SingleInput from '../SingleInput';
 import MultipleChoices from '../MultipleChoices';
-import DatePicker from '../DatePicker';
+import DatePicker from '../../atoms/DateInput';
 import Dropdown from '../../atoms/Dropdown';
 import ControlBtn from '../../atoms/ControlBtn';
 
@@ -54,11 +54,12 @@ class FormBlock extends Component<Prop> {
   }
   componentWillReceiveProps(nextProps) {
     const { formboard, index } = nextProps;
-    console.log(nextProps);
+    // console.log(nextProps);
     this.setState({ title: formboard.forms[index].title });
   }
   changeActiveForm() {
-    this.props.selectActiveForm(this.props.index + 1);
+    const rect = this.instance.getBoundingClientRect();
+    this.props.selectActiveForm(rect.top + window.scrollY);
   }
   changeFormTitle(value: string) {
     this.setState({ title: value });
@@ -126,7 +127,9 @@ class FormBlock extends Component<Prop> {
 
     return (
       <div
-        ref={formId}
+        ref={(el) => {
+          this.instance = el;
+        }}
         className={index === activeRow - 1 ? styles.active : styles.FormBlock}
         onClick={this.changeActiveForm}
         onKeyDown={() => {}}

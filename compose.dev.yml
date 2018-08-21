@@ -1,38 +1,34 @@
 version: '3'
 services:
-     webapp:
-        build: .
-        image: khomkrit/interactive-form
-        # image: khomkrit/ifb-small
-        volumes:
-          - ./:/usr/local/app:Z
-          - /usr/local/app/node_modules/
-      # links:
-      #    - api
-        depends_on:
-          - api      
-        ports:
-          - "3000:3000"  
-          - "8080:8080"
-        command:
-          ["npm","run","start:development:docker"]  
-     api:
-        build: ./backend 
-        image: khomkrit/form-api
-        volumes:
-          - ./backend:/usr/local/app:Z
-          - /usr/local/app/node_modules/
-        ports:
-          - "5000:5000"
-    #    links:
-    #      - db 
-        depends_on:
-          - db
-     db:
-      build: ./backend/mongodb
-      image: khomkrit/form-db
-      volumes:
-          - ./backend/mongodb/data/:/data
-      ports:
-          - "27017:27017"
-             
+  webapp:
+    build: .
+    image: khomkrit/interactive-form
+    # image: khomkrit/ifb-small
+    volumes:
+      - ./:/usr/local/app:Z
+      - /usr/local/app/node_modules/
+    # links:
+    #    - api
+    depends_on:
+      - api
+    ports:
+      - '3000:3000'
+      - '8080:8080'
+    command: ['npm', 'run', 'start:development:docker']
+  api:
+    build: ./backend
+    image: khomkrit/form-api
+    volumes:
+      - ./backend:/usr/local/app:Z
+      - /usr/local/app/node_modules/
+    ports:
+      - '5000:5000'
+    depends_on:
+      - db
+  db:
+    build: ./backend/mongodb
+    image: khomkrit/form-db
+    volumes:
+      - ./backend/mongodb/data/:/data
+    ports:
+      - '27017:27017'

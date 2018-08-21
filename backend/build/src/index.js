@@ -10,7 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const bodyParser = require("body-parser");
 const express = require("express");
-const model_1 = require("./model");
+const forms_model_1 = require("./model/forms.model");
 const mongoose = require("mongoose");
 const cors = require("cors");
 // setup server
@@ -29,8 +29,8 @@ db.once('open', () => {
     console.log('+++ Connected to mongoose');
 });
 server.use('/board', (req, res) => __awaiter(this, void 0, void 0, function* () {
-    let form = new model_1.default();
-    let formData = yield model_1.default.find();
+    let form = new forms_model_1.default();
+    let formData = yield forms_model_1.default.find();
     res.send(formData);
 }));
 server.use('/save', (req, res) => __awaiter(this, void 0, void 0, function* () {
@@ -72,7 +72,7 @@ server.use('/save', (req, res) => __awaiter(this, void 0, void 0, function* () {
       res.send(err);
     });
     */
-    model_1.default.findOneAndUpdate({ uid: Id }, // find a document with that filter
+    forms_model_1.default.findOneAndUpdate({ uid: Id }, // find a document with that filter
     newForm, // document to insert when nothing was found
     { upsert: true, new: true, runValidators: true }, // options
     function (err, doc) {

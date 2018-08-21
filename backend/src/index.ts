@@ -1,6 +1,6 @@
 import * as bodyParser from 'body-parser';
 import * as express from 'express';
-import FormModel from './model';
+import FormModel from './model/forms.model';
 import * as mongoose from 'mongoose';
 import * as cors from 'cors';
 
@@ -88,36 +88,7 @@ server.use('/save', async (req, res) => {
 });
 
 server.use('/delete', (req, res) => {
-  /* let newForm = {
-    title: 'Form Title',
-    numForm: 2,
-    activeRow: 1,
-    forms: [
-      {
-        title: 'ช่วงเงินเดือน',
-        formId: 'first-form',
-        type: 'MultipleChoices',
-        radiosTitle: ['1000-2000', '50-6893'],
-      },
-      {
-        title: '',
-        formId: 'second form',
-        type: 'Checkboxes',
-        radiosTitle: ['test loading', 'test2'],
-      },
-      {
-        title: '',
-        formId: 'third form',
-        type: 'SingleInput',
-      },
-    ],
-  };
-  */
-  const newForm = req.body.data;
-  console.log(` New form ${JSON.stringify(newForm)}`);
-  let form = new FormModel(newForm);
-  form.save();
-  res.send('save data to database');
+   
 });
 
 server.use('/signin', (req, res) => {

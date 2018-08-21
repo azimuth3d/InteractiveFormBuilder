@@ -9,5 +9,5 @@ yarn install
 and use docker-compose to startup all service frontend and backend
 
 ```
-  docker-compoose -f compose.dev.yml up
+  docker-compose -f compose.dev.yml up
 ```
