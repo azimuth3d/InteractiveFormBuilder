@@ -1,4 +1,4 @@
-FROM mhart/alpine-node:8.11
+FROM mhart/alpine-node:8.12
 LABEL Khomkrit Uparakham <azimuth3d@gmail.com>
 ENV NPM_CONFIG_LOGLEVEL warn
 RUN mkdir -p /usr/local/app

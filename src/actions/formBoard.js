@@ -20,7 +20,6 @@ export const loadBoard = (userId: string): ThunkAction => async (
   dispatch: Dispatch
 ) => {
   const board = await axios.get('http://localhost:5000/board');
-  // console.log(board.data[0]);
   if (board) {
     dispatch({
       type: LOAD_BOARD,

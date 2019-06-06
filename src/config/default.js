@@ -3,12 +3,12 @@ module.exports = {
   port: process.env.PORT,
   app: {
     htmlAttributes: { lang: 'en' },
-    title: 'React Cool Starter',
-    titleTemplate: 'React Cool Starter - %s',
+    title: 'form1',
+    titleTemplate: 'Interactive form builder - %s',
     meta: [
       {
         name: 'description',
-        content: 'The best react universal starter boilerplate in the world.',
+        content: ' Another Google form  clone with react universal .',
       },
     ],
   },

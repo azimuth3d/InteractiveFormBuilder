@@ -1,4 +1,4 @@
-FROM mhart/alpine-node:8.11
+FROM mhart/alpine-node:8.12
 LABEL Khomkrit Uparakham <azimuth3d@gmail.com>
 ENV NPM_CONFIG_LOGLEVEL warn
 RUN mkdir -p /usr/local/app
@@ -11,12 +11,13 @@ RUN apk add  --virtual build-dependencies --no-cache make \
   bash \
   lcms2-dev \
   libpng-dev
+
 RUN npm install && \
   npm install pngquant-bin optipng-bin && \
   npm install node-gyp -g && \
   npm rebuild node-sass --force
 
-RUN apk del build-dependencies
+# RUN apk del build-dependencies
 
 ADD . /usr/local/app
 CMD [ "npm", "run", "start:production:docker" ]

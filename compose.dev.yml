@@ -3,12 +3,9 @@ services:
   webapp:
     build: .
     image: khomkrit/interactive-form
-    # image: khomkrit/ifb-small
     volumes:
       - ./:/usr/local/app:Z
       - /usr/local/app/node_modules/
-    # links:
-    #    - api
     depends_on:
       - api
     ports:

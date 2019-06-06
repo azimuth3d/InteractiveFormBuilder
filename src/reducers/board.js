@@ -28,19 +28,7 @@ const initialState = {
     {
       title: '',
       formId: 'first-form',
-      type: 'MultipleChoices',
-      radiosTitle: ['5400-2000', '50-6893'],
-    },
-    {
-      title: '',
-      formId: 'second form',
-      type: 'Checkboxes',
-      radiosTitle: ['35000-15000', 'test2'],
-    },
-    {
-      title: '',
-      formId: 'third form',
-      type: 'SingleInput',
+      type: 'ShortQuestion',
     },
   ],
 };
@@ -58,7 +46,7 @@ export default (state: State = initialState, action: Action = {}): State => {
       newForm.push({
         title: 'Question title',
         formId: action.formId,
-        type: 'SingleInput',
+        type: 'ShortQuestion',
       });
       return _.assign(state, {
         numForm: state.numForm + 1,
