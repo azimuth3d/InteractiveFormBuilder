@@ -238,7 +238,7 @@
     }
   },
   "dependencies": {
-    "axios": "^0.17.1",
+    "axios": "^0.21.1",
     "babel-register": "^6.26.0",
     "chalk": "2.3.0",
     "compression": "1.7.1",
