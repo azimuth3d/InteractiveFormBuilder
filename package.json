@@ -308,7 +308,7 @@
     "image-webpack-loader": "^3.4.2",
     "jest": "22.0.4",
     "nock": "9.1.5",
-    "node-sass": "4.7.2",
+    "node-sass": "7.0.0",
     "nodemon": "1.14.3",
     "postcss": "6.0.14",
     "postcss-loader": "2.0.9",
